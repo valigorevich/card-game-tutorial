@@ -11,8 +11,6 @@ extends Node2D
 @onready var enemy_handler := $EnemyHandler as EnemyHandler
 @onready var player := $Player as Player
 
-var current_deck: CardPile = CardPile.new()
-
 
 func _ready() -> void:
 	var new_stats: CharacterStats = character_stats.create_instance()
@@ -28,7 +26,6 @@ func _ready() -> void:
 
 	Events.game_level_changed.emit(current_game_level)
 
-	update_current_deck(new_stats.deck)
 	start_battle(new_stats)
 
 func start_battle(stats: CharacterStats) -> void:
@@ -36,12 +33,6 @@ func start_battle(stats: CharacterStats) -> void:
 	MusicPlayer.play(music, true)
 	enemy_handler.reset_enemy_actions()
 	player_handler.start_battle(stats)
-	print(current_deck._to_string())
-
-
-func update_current_deck(cards: CardPile):
-	for card in cards.cards:
-		current_deck.add_card(card)
 
 
 func _on_enemy_turn_ended() -> void:
