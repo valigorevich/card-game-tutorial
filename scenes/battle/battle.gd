@@ -2,6 +2,7 @@ extends Node2D
 
 @export var character_stats: CharacterStats
 @export var music: AudioStream
+@export var enemy_spawner: EnemySpawner
 
 @export var current_game_level = 1
 
@@ -25,7 +26,12 @@ func _ready() -> void:
 	
 	Events.game_level_changed.emit(current_game_level)
 	start_battle(new_stats)
-	
+
+#to_do: function to spawn enemies in enemy handler.
+#match current level with enemy spawner level.
+#select enemies and spawn them one by one.
+#if current level > enemy spawner level -> win
+#when spawn animation ended, call start_battle.
 
 func start_battle(stats: CharacterStats) -> void:
 	get_tree().paused = false
