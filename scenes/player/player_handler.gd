@@ -15,7 +15,7 @@ func start_battle(character_stats: CharacterStats) -> void:
 	character.draw_pile.shuffle()
 	character.discard = CardPile.new()
 	start_turn()
-	
+
 
 func start_turn() -> void:
 	character.block = 0
@@ -39,10 +39,8 @@ func draw_cards(amount: int) -> void:
 	for i in range(amount):
 		tween.tween_callback(draw_card)
 		tween.tween_interval(HAND_DRAW_INTERVAL)
-		
-	tween.finished.connect(
-		func(): Events.player_hand_drawn.emit()
-	)
+
+	tween.finished.connect(func(): Events.player_hand_drawn.emit())
 
 
 func discard_cards() -> void:
@@ -51,17 +49,15 @@ func discard_cards() -> void:
 		tween.tween_callback(character.discard.add_card.bind(card_ui.card))
 		tween.tween_callback(hand.discard_card.bind(card_ui))
 		tween.tween_interval(HAND_DISCARD_INTERVAL)
-	
-	tween.finished.connect(
-		func(): Events.player_hand_discarded.emit()
-	)
+
+	tween.finished.connect(func(): Events.player_hand_discarded.emit())
 
 
 func reshuffle_deck_from_discard() -> void:
 	if not character.draw_pile.empty():
 		return
-	
+
 	while not character.discard.empty():
 		character.draw_pile.add_card(character.discard.draw_card())
-	
+
 	character.draw_pile.shuffle()
