@@ -33,7 +33,7 @@ func _get_targets(targets: Array[Node]) -> Array[Node]:
 			return tree.get_nodes_in_group("player")
 		Target.ALL_ENEMIES:
 			return tree.get_nodes_in_group("enemies")
-		Target.ALL_ENEMIES:
+		Target.EVERYONE:
 			return tree.get_nodes_in_group("player") + tree.get_nodes_in_group("enemies")
 		_:
 			return []
