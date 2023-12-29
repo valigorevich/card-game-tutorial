@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dpjceiwh70dhj"]
+[gd_scene load_steps=23 format=3 uid="uid://dpjceiwh70dhj"]
 
 [ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://art/background.png" id="1_3gh53"]
 [ext_resource type="Script" path="res://scenes/battle/battle.gd" id="1_vcumq"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://ysl00wvy3f5n" path="res://scenes/ui/mana_ui.tscn" id="11_5vl25"]
 [ext_resource type="PackedScene" uid="uid://c5acwy0j0uks6" path="res://scenes/ui/tooltip.tscn" id="12_n0euc"]
 [ext_resource type="Theme" uid="uid://ci1edh073cu36" path="res://main_theme.tres" id="13_3vqgh"]
+[ext_resource type="Script" path="res://scenes/battle/deck_info_button.gd" id="14_3gmv1"]
+[ext_resource type="Script" path="res://scenes/battle/deck_info_panel.gd" id="15_prlq6"]
 [ext_resource type="PackedScene" uid="uid://dh8xj23oodkqc" path="res://scenes/ui/battle_over_panel.tscn" id="17_tpqce"]
 [ext_resource type="Script" path="res://scenes/ui/game_level_label.gd" id="18_l35pk"]
 
@@ -86,6 +88,42 @@ metadata/_edit_lock_ = true
 wait_time = 0.1
 one_shot = true
 
+[node name="DeckInfoLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="DeckInfoOpenButton" type="Button" parent="DeckInfoLayer"]
+offset_left = 28.0
+offset_top = 120.0
+offset_right = 46.0
+offset_bottom = 138.0
+theme = ExtResource("13_3vqgh")
+script = ExtResource("14_3gmv1")
+
+[node name="DeckInfoPanel" type="Panel" parent="DeckInfoLayer"]
+top_level = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 7.0
+offset_right = -8.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("13_3vqgh")
+script = ExtResource("15_prlq6")
+
+[node name="Button" type="Button" parent="DeckInfoLayer/DeckInfoPanel"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 4.0
+offset_right = 236.0
+offset_bottom = 16.0
+theme = ExtResource("13_3vqgh")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "X"
+
 [node name="BattleUI" type="CanvasLayer" parent="." groups=["ui_layer"]]
 script = ExtResource("7_35uld")
 
@@ -102,13 +140,16 @@ grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
 script = ExtResource("2_pqo47")
+metadata/_edit_lock_ = true
 
 [node name="ManaUI" parent="BattleUI" instance=ExtResource("11_5vl25")]
 character_stats = ExtResource("4_iex3v")
+metadata/_edit_lock_ = true
 
 [node name="Tooltip" parent="BattleUI" instance=ExtResource("12_n0euc")]
 offset_top = 7.0
 offset_bottom = 43.0
+metadata/_edit_lock_ = true
 
 [node name="EndTurnButton" type="Button" parent="BattleUI"]
 unique_name_in_owner = true
@@ -126,6 +167,7 @@ grow_vertical = 0
 theme = ExtResource("13_3vqgh")
 disabled = true
 text = "End turn"
+metadata/_edit_lock_ = true
 
 [node name="GameLevelLabel" type="Label" parent="BattleUI"]
 offset_left = 221.0
@@ -135,9 +177,13 @@ offset_bottom = 12.0
 theme = ExtResource("13_3vqgh")
 text = "Level: 0"
 script = ExtResource("18_l35pk")
+metadata/_edit_lock_ = true
 
 [node name="BattleOverLayer" type="CanvasLayer" parent="."]
 layer = 2
 
 [node name="BattleOverPanel" parent="BattleOverLayer" instance=ExtResource("17_tpqce")]
 visible = false
+
+[connection signal="pressed" from="DeckInfoLayer/DeckInfoOpenButton" to="DeckInfoLayer/DeckInfoPanel" method="_on_deck_info_open_button_pressed"]
+[connection signal="pressed" from="DeckInfoLayer/DeckInfoPanel/Button" to="DeckInfoLayer/DeckInfoPanel" method="_on_button_pressed"]
