@@ -1,0 +1,49 @@
+[gd_scene load_steps=14 format=3 uid="uid://b6l3jrpr7etev"]
+
+[ext_resource type="Script" path="res://scenes/enemy/enemy_action_picker.gd" id="1_si5a3"]
+[ext_resource type="Script" path="res://enemies/crab/crab_attack_action.gd" id="2_fo7yy"]
+[ext_resource type="Texture2D" uid="uid://bfvi02kojsa00" path="res://art/tile_0103.png" id="3_lw63f"]
+[ext_resource type="Script" path="res://enemies/crab/crab_block_action.gd" id="3_t42pc"]
+[ext_resource type="Script" path="res://custom_resources/intent.gd" id="4_gwe45"]
+[ext_resource type="Script" path="res://enemies/crab/crab_megablock_action.gd" id="4_siehs"]
+[ext_resource type="AudioStream" uid="uid://de2ryat1pxq6" path="res://art/enemy_attack.ogg" id="5_lxdwc"]
+[ext_resource type="Texture2D" uid="uid://bi6pfjs32f820" path="res://art/tile_0101.png" id="6_3rlur"]
+[ext_resource type="AudioStream" uid="uid://k8m4o3hlwm7l" path="res://art/enemy_block.ogg" id="8_7x21n"]
+[ext_resource type="Texture2D" uid="uid://oe7v35ii8vrs" path="res://art/tile_0102.png" id="8_ypxny"]
+
+[sub_resource type="Resource" id="Resource_i65rl"]
+script = ExtResource("4_gwe45")
+number = "7"
+icon = ExtResource("3_lw63f")
+
+[sub_resource type="Resource" id="Resource_6a5g6"]
+script = ExtResource("4_gwe45")
+number = ""
+icon = ExtResource("6_3rlur")
+
+[sub_resource type="Resource" id="Resource_nerao"]
+script = ExtResource("4_gwe45")
+number = ""
+icon = ExtResource("8_ypxny")
+
+[node name="CrabEnemyAI" type="Node"]
+script = ExtResource("1_si5a3")
+
+[node name="AttackAction" type="Node" parent="."]
+script = ExtResource("2_fo7yy")
+intent = SubResource("Resource_i65rl")
+sound = ExtResource("5_lxdwc")
+type = 1
+chance_weight = 1.0
+
+[node name="BlockAction" type="Node" parent="."]
+script = ExtResource("3_t42pc")
+intent = SubResource("Resource_6a5g6")
+sound = ExtResource("8_7x21n")
+type = 1
+chance_weight = 1.0
+
+[node name="MegaBlockAction" type="Node" parent="."]
+script = ExtResource("4_siehs")
+intent = SubResource("Resource_nerao")
+sound = ExtResource("8_7x21n")
