@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://c5acwy0j0uks6" path="res://scenes/ui/tooltip.tscn" id="12_n0euc"]
 [ext_resource type="Theme" uid="uid://ci1edh073cu36" path="res://main_theme.tres" id="13_3vqgh"]
 [ext_resource type="PackedScene" uid="uid://dh8xj23oodkqc" path="res://scenes/ui/battle_over_panel.tscn" id="17_tpqce"]
-[ext_resource type="Script" path="res://scenes/battle/game_level_label.gd" id="18_l35pk"]
+[ext_resource type="Script" path="res://scenes/ui/game_level_label.gd" id="18_l35pk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_04gku"]
 size = Vector2(256, 100)
