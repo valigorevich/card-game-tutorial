@@ -3,6 +3,8 @@ extends Node2D
 @export var character_stats: CharacterStats
 @export var music: AudioStream
 
+@export var current_game_level = 1
+
 @onready var battle_ui := $BattleUI as BattleUI
 @onready var player_handler := $PlayerHandler as PlayerHandler
 @onready var enemy_handler := $EnemyHandler as EnemyHandler
@@ -21,6 +23,7 @@ func _ready() -> void:
 	Events.player_hand_discarded.connect(enemy_handler.start_turn)
 	Events.player_died.connect(_on_player_died)
 	
+	Events.game_level_changed.emit(current_game_level)
 	start_battle(new_stats)
 	
 
@@ -30,6 +33,9 @@ func start_battle(stats: CharacterStats) -> void:
 	enemy_handler.reset_enemy_actions()
 	player_handler.start_battle(stats)
 
+func increment_game_level():
+	current_game_level += 1
+	Events.game_level_changed.emit(current_game_level)
 
 func _on_enemy_turn_ended() -> void:
 	player_handler.start_turn()
@@ -37,7 +43,8 @@ func _on_enemy_turn_ended() -> void:
 
 func _on_enemies_child_order_changed() -> void:
 	if enemy_handler.get_child_count() == 0:
-		Events.battle_over_screen_requested.emit("Victorious!", BattleOverPanel.Type.WIN)
+		increment_game_level()
+		# Events.battle_over_screen_requested.emit("Victorious!", BattleOverPanel.Type.WIN)
 
 
 func _on_player_died() -> void:
