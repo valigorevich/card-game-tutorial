@@ -24,6 +24,7 @@ func _on_deck_info_open_button_pressed():
 			new_card_ui.character_stats = player.stats
 			new_card_ui.card = card
 			new_card_ui.parent = self
+			new_card_ui.preview_mode = true
 			new_card_ui.disabled = true
 			new_card_ui.global_position += card_list_panel.global_position + Vector2(10, 10)
 			list_counter += 1
