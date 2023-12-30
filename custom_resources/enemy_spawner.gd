@@ -1,6 +1,4 @@
 class_name EnemySpawner
-extends Node
+extends Resource
 
-#This will spawn enemies
-func spawn() -> void:
-	pass
+@export var enemies: Array[EnemyStats] = []
