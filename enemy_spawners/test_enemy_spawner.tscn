@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://dvd21qavdt2vg"]
-
-[ext_resource type="Script" path="res://custom_resources/enemy_spawner.gd" id="1_vf5pb"]
-[ext_resource type="Resource" uid="uid://cw0q2o5but21d" path="res://enemies/bat/bat_enemy.tres" id="2_4gdp4"]
-
-[node name="EnemySpawner" type="Node"]
-script = ExtResource("1_vf5pb")
-enemies = Array[Resource("res://custom_resources/enemy_stats.gd")]([ExtResource("2_4gdp4"), ExtResource("2_4gdp4")])

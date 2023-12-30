@@ -1,10 +1,17 @@
 class_name EnemyHandler
 extends Node2D
 
+@onready var enemy = preload("res://scenes/enemy/enemy.tscn")
 
 func _ready() -> void:
 	Events.enemy_action_completed.connect(_on_enemy_action_completed)
 	
+
+func spawn_enemy(enemy_stats: EnemyStats, position: Vector2) -> void:
+	var new_enemy = enemy.instantiate()
+	new_enemy.stats = enemy_stats
+	new_enemy.global_position = position
+	add_child(new_enemy)
 
 #Update enemy actions
 func reset_enemy_actions() -> void:
