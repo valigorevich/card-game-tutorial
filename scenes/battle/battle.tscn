@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dpjceiwh70dhj"]
+[gd_scene load_steps=22 format=3 uid="uid://dpjceiwh70dhj"]
 
 [ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://art/background.png" id="1_3gh53"]
 [ext_resource type="Script" path="res://scenes/battle/battle.gd" id="1_vcumq"]
@@ -19,7 +19,6 @@
 [ext_resource type="Script" path="res://scenes/battle/deck_info_button.gd" id="14_3gmv1"]
 [ext_resource type="Script" path="res://scenes/battle/deck_info_panel.gd" id="15_prlq6"]
 [ext_resource type="PackedScene" uid="uid://dh8xj23oodkqc" path="res://scenes/ui/battle_over_panel.tscn" id="17_tpqce"]
-[ext_resource type="Script" path="res://scenes/ui/game_level_label.gd" id="18_l35pk"]
 [ext_resource type="PackedScene" uid="uid://ci78i1smskti5" path="res://scenes/ui/battle_reward_panel.tscn" id="21_6t6eo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_04gku"]
@@ -207,7 +206,6 @@ offset_right = 252.0
 offset_bottom = 12.0
 theme = ExtResource("13_3vqgh")
 text = "Level: 0"
-script = ExtResource("18_l35pk")
 metadata/_edit_lock_ = true
 
 [node name="BattleOverLayer" type="CanvasLayer" parent="."]

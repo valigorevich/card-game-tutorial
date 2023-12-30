@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var hand: Hand = $Hand as Hand
 @onready var mana_ui: ManaUI = $ManaUI as ManaUI
 @onready var end_turn_button: Button = %EndTurnButton
+@onready var game_level_label: Label = $GameLevelLabel
 
 
 func _ready() -> void:
@@ -27,3 +28,6 @@ func _on_player_hand_drawn() -> void:
 func _on_end_turn_button_pressed() -> void:
 	end_turn_button.disabled = true
 	Events.player_turn_ended.emit()
+
+func _on_game_level_changed(level) -> void:
+	game_level_label.text = "Level: %s" % level

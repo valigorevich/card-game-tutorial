@@ -26,13 +26,13 @@ func _ready() -> void:
 	Events.player_hand_discarded.connect(_on_player_hand_discarded)
 	Events.player_died.connect(_on_player_died)
 
-	Events.game_level_changed.emit(current_game_level)
 	start_battle(new_stats)
 
 
 func start_battle(stats: CharacterStats) -> void:
 	get_tree().paused = false
-	MusicPlayer.play(music, true)
+	MusicPlayer.play(music, true)	
+	battle_ui._on_game_level_changed(current_game_level)
 	scenario_handler.spawn_wave(battle_scenario, current_game_level)
 	enemy_handler.reset_enemy_actions()
 	player_handler.start_battle(stats)
@@ -47,7 +47,7 @@ func start_next_wave() -> void:
 
 func increment_game_level():
 	current_game_level += 1
-	Events.game_level_changed.emit(current_game_level)
+	battle_ui._on_game_level_changed(current_game_level)
 
 
 func _on_enemy_turn_ended() -> void:

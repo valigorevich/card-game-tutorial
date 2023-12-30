@@ -24,6 +24,3 @@ signal enemy_turn_ended
 signal battle_over_screen_requested(text: String, type: BattleOverPanel.Type)
 signal enemy_wave_started
 signal enemy_wave_cleaned
-
-#Game state signals
-signal game_level_changed(level: int)
