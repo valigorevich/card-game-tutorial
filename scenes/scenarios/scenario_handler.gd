@@ -17,6 +17,7 @@ func spawn_wave(scenario: BattleScenario, level: int) -> void:
 	#Check if wave level exeedes number of waves
 	if level > scenario.enemy_spawner.size():
 		#Emit signal that we finished the run to handle win condition
+		Events.battle_over_screen_requested.emit("Victorious!", BattleOverPanel.Type.WIN)
 		return
 	
 	var new_enemy_wave := scenario.enemy_spawner[level - 1] as EnemyWave
