@@ -8,10 +8,16 @@ const WHITE_SPRITE_MATERIAL = preload("res://art/white_sprite_material.tres")
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var stats_ui: = $StatsUI as StatsUI
 
+var current_deck: CardPile = CardPile.new():
+	set(n):
+		_set_current_deck(n)
 
 func set_character_stats(value: CharacterStats) -> void:
 	stats = value
-	
+
+	if stats.deck:	
+		update_current_deck(stats.deck)
+
 	if not stats.stats_changed.is_connected(update_stats):
 		stats.stats_changed.connect(update_stats)
 		
@@ -51,3 +57,11 @@ func take_damage(damage: int) -> void:
 				Events.player_died.emit()
 				queue_free()
 	)
+
+func _set_current_deck(new_deck: CardPile):
+	current_deck = CardPile.new()
+	update_current_deck(new_deck)
+
+func update_current_deck(cards: CardPile):
+	for card in cards.cards:
+		current_deck.add_card(card)

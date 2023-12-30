@@ -23,6 +23,7 @@ var parent: Control
 var tween: Tween
 var playable := true : set = _set_playable
 var disabled := false
+var preview_mode = false : set = _set_preview_mode
 
 func _ready() -> void:
 	#Connect signals from event bus
@@ -106,3 +107,6 @@ func _on_card_drag_or_aiming_ended(_card: CardUI) -> void:
 	
 func _on_character_stats_changed() -> void:
 	self.playable = character_stats.can_play_card(card)
+
+func _set_preview_mode(mode: bool):
+	preview_mode = mode
