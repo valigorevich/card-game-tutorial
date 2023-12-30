@@ -25,6 +25,7 @@ func spawn_wave(scenario: BattleScenario, level: int) -> void:
 	for enemy in new_enemy_spawner.enemies:
 		#Check if we have more enemies than markers on level
 		if enemy_index > positions.size():
+			print("Can't spawn enemy. There is no marker for spawn position")
 			return
 		
 		var position_marker := positions[enemy_index] as Marker2D

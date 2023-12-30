@@ -6,7 +6,7 @@ extends Node2D
 func _ready() -> void:
 	Events.enemy_action_completed.connect(_on_enemy_action_completed)
 	
-
+#Spawn new enemy on scene
 func spawn_enemy(enemy_stats: EnemyStats, position: Vector2) -> void:
 	var new_enemy = enemy.instantiate()
 	new_enemy.stats = enemy_stats
