@@ -6,7 +6,7 @@ extends CanvasLayer
 @onready var hand: Hand = $Hand as Hand
 @onready var mana_ui: ManaUI = $ManaUI as ManaUI
 @onready var end_turn_button: Button = %EndTurnButton
-@onready var game_level_label: Label = $GameLevelLabel
+@onready var game_level_label: Label = %GameLevelLabel
 
 
 func _ready() -> void:

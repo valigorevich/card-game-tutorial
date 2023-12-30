@@ -200,6 +200,7 @@ text = "End turn"
 metadata/_edit_lock_ = true
 
 [node name="GameLevelLabel" type="Label" parent="BattleUI"]
+unique_name_in_owner = true
 offset_left = 221.0
 offset_top = 4.0
 offset_right = 252.0
