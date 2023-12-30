@@ -19,10 +19,11 @@ signal player_died
 #Enemy related signals
 signal enemy_action_completed(enemy: Enemy)
 signal enemy_turn_ended
-signal enemy_wave_cleaned
 
 #Battle-related events
 signal battle_over_screen_requested(text: String, type: BattleOverPanel.Type)
+signal enemy_wave_started
+signal enemy_wave_cleaned
 
 #Game state signals
 signal game_level_changed(level: int)
