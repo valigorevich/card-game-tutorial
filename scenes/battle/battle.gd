@@ -61,8 +61,7 @@ func _on_player_hand_discarded() -> void:
 		enemy_handler.start_turn()
 	else:
 		var reward = calculate_wave_reward()
-		print(reward)
-		Events.enemy_wave_cleaned.emit(reward, player.stats)
+		Events.enemy_wave_cleaned.emit(reward, player)
 
 func calculate_wave_reward():
 	return wave_rewards[current_game_level]

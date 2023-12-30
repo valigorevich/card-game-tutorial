@@ -101,7 +101,6 @@ one_shot = true
 
 [node name="DeckInfoLayer" type="CanvasLayer" parent="."]
 layer = 2
-visible = false
 
 [node name="DeckInfoOpenButton" type="Button" parent="DeckInfoLayer"]
 offset_left = 28.0
@@ -136,6 +135,15 @@ offset_bottom = 16.0
 theme = ExtResource("13_3vqgh")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "X"
+
+[node name="NumCards" type="Label" parent="DeckInfoLayer/DeckInfoPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 72.0
+offset_bottom = 11.0
+text = "You have 0 cards"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="DeckInfoLayer/DeckInfoPanel"]
 z_as_relative = false

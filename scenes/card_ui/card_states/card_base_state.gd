@@ -17,6 +17,7 @@ func enter() -> void:
 func on_gui_input(event: InputEvent) -> void:
 	if card_ui.selectable and event.is_action_pressed("left_mouse"):
 		transition_requested.emit(self, CardState.State.SELECTED)
+		Events.card_selected.emit(card_ui)
 
 	if not card_ui.playable or card_ui.disabled:
 		return
