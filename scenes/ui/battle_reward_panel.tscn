@@ -55,6 +55,7 @@ theme_override_constants/separation = 12
 alignment = 1
 
 [node name="ChooseItemPanel" parent="VBoxContainer/CardRewardsContainer" instance=ExtResource("2_vhuiu")]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="ContinueButton" type="Button" parent="VBoxContainer"]

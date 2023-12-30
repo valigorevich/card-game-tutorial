@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dpjceiwh70dhj"]
+[gd_scene load_steps=23 format=3 uid="uid://dpjceiwh70dhj"]
 
 [ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://art/background.png" id="1_3gh53"]
 [ext_resource type="Script" path="res://scenes/battle/battle.gd" id="1_vcumq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://enemies/enemy_handler.gd" id="4_7jd7x"]
 [ext_resource type="Resource" uid="uid://ds362jrpbjf4n" path="res://characters/warrior/warrior.tres" id="4_iex3v"]
 [ext_resource type="Resource" uid="uid://cesps7q81tii5" path="res://scenarios/battle_scenario_01.tres" id="4_u0arc"]
+[ext_resource type="Resource" uid="uid://bcf0u7wtiqedv" path="res://scenes/battle/level_1_reward.tres" id="5_67iwf"]
 [ext_resource type="Script" path="res://scenes/ui/battle_ui.gd" id="7_35uld"]
 [ext_resource type="Script" path="res://scenes/player/player_handler.gd" id="8_jpedf"]
 [ext_resource type="Script" path="res://scenes/scenarios/scenario_handler.gd" id="10_ah5qm"]
@@ -29,6 +30,7 @@ script = ExtResource("1_vcumq")
 character_stats = ExtResource("4_iex3v")
 music = ExtResource("3_aiknl")
 battle_scenario = ExtResource("4_u0arc")
+wave_rewards = Array[Resource("res://custom_resources/card_pile.gd")]([ExtResource("5_67iwf"), ExtResource("5_67iwf")])
 metadata/_edit_lock_ = true
 
 [node name="Background" type="Sprite2D" parent="."]

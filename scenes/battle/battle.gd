@@ -5,6 +5,7 @@ extends Node2D
 @export var battle_scenario: BattleScenario
 
 @export var current_game_level = 1
+@export var wave_rewards: Array[CardPile] = []
 
 @onready var battle_ui := $BattleUI as BattleUI
 @onready var player_handler := $PlayerHandler as PlayerHandler
@@ -59,8 +60,12 @@ func _on_player_hand_discarded() -> void:
 	if enemy_handler.get_child_count() > 0:
 		enemy_handler.start_turn()
 	else:
-		Events.enemy_wave_cleaned.emit()
+		var reward = calculate_wave_reward()
+		print(reward)
+		Events.enemy_wave_cleaned.emit(reward, player.stats)
 
+func calculate_wave_reward():
+	return wave_rewards[current_game_level]
 
 func _on_enemies_child_order_changed() -> void:
 	if enemy_handler.get_child_count() == 0:
