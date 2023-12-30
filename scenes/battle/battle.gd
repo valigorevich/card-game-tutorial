@@ -69,11 +69,5 @@ func _on_enemies_child_order_changed() -> void:
 		
 		# Events.battle_over_screen_requested.emit("Victorious!", BattleOverPanel.Type.WIN)
 
-
-func increment_game_level():
-	current_game_level += 1
-	Events.game_level_changed.emit(current_game_level)
-
-
 func _on_player_died() -> void:
 	Events.battle_over_screen_requested.emit("Game Over!", BattleOverPanel.Type.LOOSE)
