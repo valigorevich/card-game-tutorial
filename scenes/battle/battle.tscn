@@ -19,7 +19,7 @@
 [ext_resource type="Script" path="res://scenes/battle/deck_info_button.gd" id="14_3gmv1"]
 [ext_resource type="Script" path="res://scenes/battle/deck_info_panel.gd" id="15_prlq6"]
 [ext_resource type="PackedScene" uid="uid://dh8xj23oodkqc" path="res://scenes/ui/battle_over_panel.tscn" id="17_tpqce"]
-[ext_resource type="PackedScene" uid="uid://ci78i1smskti5" path="res://scenes/ui/battle_reward_panel.tscn" id="21_6t6eo"]
+[ext_resource type="PackedScene" uid="uid://cytb3b6y8kqk4" path="res://scenes/ui/battle_reward_panel.tscn" id="21_6t6eo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_04gku"]
 size = Vector2(256, 100)
@@ -99,6 +99,7 @@ one_shot = true
 
 [node name="DeckInfoLayer" type="CanvasLayer" parent="."]
 layer = 2
+visible = false
 
 [node name="DeckInfoOpenButton" type="Button" parent="DeckInfoLayer"]
 offset_left = 28.0

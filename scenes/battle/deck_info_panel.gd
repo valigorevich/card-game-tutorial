@@ -15,10 +15,8 @@ func _ready():
 func _on_deck_info_open_button_pressed():
 	var card_list: CardPile = player.current_deck
 
-	# print(card_list._to_string())
 	if list_counter < len(card_list.cards):
 		for card in card_list.cards:
-			print(card)
 			var new_card_ui := card_ui.instantiate()
 			card_list_panel.add_child(new_card_ui)
 			new_card_ui.character_stats = player.stats

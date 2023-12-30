@@ -30,4 +30,4 @@ func _on_end_turn_button_pressed() -> void:
 	Events.player_turn_ended.emit()
 
 func _on_game_level_changed(level) -> void:
-	game_level_label.text = "Level: %s" % level
+	game_level_label.text = "Wave: %s" % level
