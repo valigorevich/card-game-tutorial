@@ -15,5 +15,5 @@ func render(card_list: CardPile, stats):
 			new_card_ui.parent = self
 			new_card_ui.preview_mode = true
 			new_card_ui.disabled = true
-			# new_card_ui.global_position += card_list_panel.global_position + Vector2(10, 10)
+			new_card_ui.selectable = true
 			list_counter += 1

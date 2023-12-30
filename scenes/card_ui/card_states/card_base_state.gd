@@ -15,6 +15,9 @@ func enter() -> void:
 	Events.tooltip_hide_requested.emit()
 
 func on_gui_input(event: InputEvent) -> void:
+	if card_ui.selectable and event.is_action_pressed("left_mouse"):
+		transition_requested.emit(self, CardState.State.SELECTED)
+
 	if not card_ui.playable or card_ui.disabled:
 		return
 	#Transition to clicked state
