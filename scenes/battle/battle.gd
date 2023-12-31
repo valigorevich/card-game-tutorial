@@ -4,7 +4,7 @@ extends Node2D
 @export var music: AudioStream
 @export var battle_scenario: BattleScenario
 
-@export var current_game_level = 1
+@export var current_wave_level = 1
 
 @onready var battle_ui := $BattleUI as BattleUI
 @onready var player_handler := $PlayerHandler as PlayerHandler
@@ -32,22 +32,22 @@ func _ready() -> void:
 func start_battle(stats: CharacterStats) -> void:
 	get_tree().paused = false
 	MusicPlayer.play(music, true)	
-	battle_ui._on_game_level_changed(current_game_level)
-	scenario_handler.spawn_wave(battle_scenario, current_game_level)
+	battle_ui._on_wave_level_changed(current_wave_level)
+	scenario_handler.spawn_wave(battle_scenario, current_wave_level)
 	enemy_handler.reset_enemy_actions()
 	player_handler.start_battle(stats)
 
 
 func start_next_wave() -> void:
-	increment_game_level()
-	scenario_handler.spawn_wave(battle_scenario, current_game_level)
+	increment_wave_level()
+	scenario_handler.spawn_wave(battle_scenario, current_wave_level)
 	enemy_handler.reset_enemy_actions()
 	player_handler.start_turn()
 
 
-func increment_game_level():
-	current_game_level += 1
-	battle_ui._on_game_level_changed(current_game_level)
+func increment_wave_level():
+	current_wave_level += 1
+	battle_ui._on_wave_level_changed(current_wave_level)
 
 
 func _on_enemy_turn_ended() -> void:
@@ -59,7 +59,7 @@ func _on_player_hand_discarded() -> void:
 	if enemy_handler.get_child_count() > 0:
 		enemy_handler.start_turn()
 	else:
-		Events.enemy_wave_cleaned.emit()
+		Events.enemy_wave_cleaned.emit(player)
 
 
 func _on_enemies_child_order_changed() -> void:

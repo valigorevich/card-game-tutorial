@@ -2,7 +2,7 @@ class_name CardState
 extends Node
 
 #Defining all the states the card can be in as an enum
-enum State {BASE, CLICKED, DRAGGING, AIMING, RELEASED}
+enum State {BASE, CLICKED, DRAGGING, AIMING, RELEASED, SELECTED}
 
 #Signal with transition parameters: from and to
 signal transition_requested(from: CardState, to: CardState)

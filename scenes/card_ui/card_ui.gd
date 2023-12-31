@@ -23,6 +23,7 @@ var parent: Control
 var tween: Tween
 var playable := true : set = _set_playable
 var disabled := false
+var selectable = false
 var preview_mode = false : set = _set_preview_mode
 
 func _ready() -> void:
