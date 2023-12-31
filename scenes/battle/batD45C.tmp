@@ -163,7 +163,7 @@ unique_name_in_owner = true
 clip_contents = true
 layout_direction = 2
 layout_mode = 2
-columns = 7
+columns = 5
 
 [node name="BattleUI" type="CanvasLayer" parent="." groups=["ui_layer"]]
 script = ExtResource("7_35uld")
