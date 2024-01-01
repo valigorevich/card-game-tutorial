@@ -15,4 +15,6 @@ func _ready():
 
 
 func calculate_wave_reward():
-	current_reward = wave_rewards[current_wave_level]
+	current_reward = wave_rewards[current_wave_level - 1] 
+	if not current_reward:
+		current_reward = wave_rewards[0]

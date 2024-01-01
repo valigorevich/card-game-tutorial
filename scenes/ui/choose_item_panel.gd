@@ -1,5 +1,5 @@
 class_name ChooseItemPanel
-extends HBoxContainer
+extends GridContainer
 
 var list_counter = 0
 @onready var card_ui = preload("res://scenes/card_ui/card_ui.tscn")

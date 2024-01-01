@@ -37,5 +37,5 @@ func _on_enemy_action_completed(current_enemy: Enemy) -> void:
 		return
 	
 	#Pick next enemy and do it's turn
-	var next_enemy: Enemy = get_child(enemy.get_index() + 1) as Enemy
+	var next_enemy: Enemy = get_child(current_enemy.get_index() + 1) as Enemy
 	next_enemy.do_turn()

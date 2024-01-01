@@ -17,11 +17,12 @@ func _on_deck_info_open_button_pressed():
 	var cards_count = len(card_list.cards)
 	cards_quantity_label.text = "There are %s cards in deck" % cards_count
 	print("quantity", cards_count)
+	var stats = player.stats
 	for card in card_list.cards:
 		if list_counter < cards_count:
 			var new_card_ui := card_ui.instantiate()
 			card_list_panel.add_child(new_card_ui)
-			new_card_ui.character_stats = player.stats
+			new_card_ui.character_stats = stats
 			new_card_ui.card = card
 			new_card_ui.parent = self
 			new_card_ui.preview_mode = true

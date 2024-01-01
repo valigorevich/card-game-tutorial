@@ -19,7 +19,6 @@ func _ready() -> void:
 		await reward_manager.ready
 	reward_manager.calculate_wave_reward()
 	reward_variants = reward_manager.current_reward
-	print(reward_variants)
 
 
 func show_reward_screen(player) -> void:
