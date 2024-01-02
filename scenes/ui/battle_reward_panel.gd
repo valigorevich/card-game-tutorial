@@ -13,7 +13,7 @@ var reward_variants
 
 func _ready() -> void:
 	Events.enemy_wave_cleaned.connect(show_reward_screen)
-	Events.card_selected.connect(_on_card_selection)
+	Events.item_selected.connect(_on_item_selection)
 	continue_button.disabled = true
 	if not reward_manager.is_node_ready():
 		await reward_manager.ready
@@ -25,7 +25,7 @@ func show_reward_screen(player) -> void:
 	current_player = player
 	show()
 	get_tree().paused = true
-	choose_item_panel.render(reward_variants, player.stats)
+	choose_item_panel.render(reward_variants)
 
 
 func _on_continue_button_pressed() -> void:
@@ -35,6 +35,6 @@ func _on_continue_button_pressed() -> void:
 	Events.enemy_wave_started.emit()
 
 
-func _on_card_selection(card_ui):
+func _on_item_selection(item_ui):
 	continue_button.disabled = false
-	selected_reward = card_ui.card
+	selected_reward = item_ui.item

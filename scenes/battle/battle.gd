@@ -31,7 +31,7 @@ func _ready() -> void:
 
 func start_battle(stats: CharacterStats) -> void:
 	get_tree().paused = false
-	MusicPlayer.play(music, true)	
+	# MusicPlayer.play(music, true)	
 	battle_ui._on_wave_level_changed(current_wave_level)
 	scenario_handler.spawn_wave(battle_scenario, current_wave_level)
 	enemy_handler.reset_enemy_actions()

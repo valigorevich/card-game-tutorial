@@ -2,18 +2,22 @@ class_name ChooseItemPanel
 extends GridContainer
 
 var list_counter = 0
-@onready var card_ui = preload("res://scenes/card_ui/card_ui.tscn")
+# @onready var card_ui = preload("res://scenes/card_ui/card_ui.tscn")
+
+@onready var item_ui = preload("res://scenes/item_ui/item_ui.tscn")
 
 
-func render(card_list: CardPile, stats):
+func render(
+	card_list: CardPile,
+):
 	if list_counter < len(card_list.cards):
 		for card in card_list.cards:
-			var new_card_ui := card_ui.instantiate()
-			self.add_child(new_card_ui)
-			new_card_ui.character_stats = stats
-			new_card_ui.card = card
-			new_card_ui.parent = self
-			new_card_ui.preview_mode = true
-			new_card_ui.disabled = true
-			new_card_ui.selectable = true
+			var item_ui_instance := item_ui.instantiate()
+			self.add_child(item_ui_instance)
+			# item_ui_instance.character_stats = stats
+			item_ui_instance.item = card
+			item_ui_instance.parent = self
+			# item_ui_instance.preview_mode = true
+			item_ui_instance.disabled = true
+			item_ui_instance.selectable = true
 			list_counter += 1
