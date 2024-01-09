@@ -28,6 +28,7 @@ func _on_deck_info_open_button_pressed():
 			# item_ui_instance.preview_mode = true
 			item_ui_instance.disabled = true
 			item_ui_instance.global_position += card_list_panel.global_position + Vector2(10, 10)
+			item_ui_instance.selectable = false
 			list_counter += 1
 
 	self.show()

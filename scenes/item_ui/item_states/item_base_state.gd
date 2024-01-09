@@ -10,16 +10,12 @@ func enter():
 
 
 func on_mouse_entered() -> void:
-	# if not item_ui.preview_mode and (not item_ui.playable or item_ui.disabled):
-	# 	return
 
 	item_ui.panel.set("theme_override_styles/panel", item_ui.HOVER_STYLEBOX)
 	Events.tooltip_requested.emit(item_ui.item.icon, item_ui.item.tooltip_text)
 
 
 func on_mouse_exited() -> void:
-	# if not item_ui.preview_mode and (not item_ui.playable or item_ui.disabled):
-	# 	return
 
 	item_ui.panel.set("theme_override_styles/panel", item_ui.BASE_STYLEBOX)
 	Events.tooltip_hide_requested.emit()
