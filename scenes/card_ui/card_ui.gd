@@ -1,30 +1,25 @@
 class_name CardUI
-extends Control
+extends ControlUiBase
 
 #A signal to reparent back to hbox container as dragged card will be out of hbox container
 signal reparent_requested(which_card_ui: CardUI)
 
-const BASE_STYLEBOX := preload("res://scenes/card_ui/card_base_stylebox.tres")
-const DRAG_STYLEBOX := preload("res://scenes/card_ui/card_dragging_stylebox.tres")
-const HOVER_STYLEBOX := preload("res://scenes/card_ui/card_hover_stylebox.tres")
-
 @export var card: Card : set = _set_card
 @export var character_stats: CharacterStats : set = _set_character_stats
 
-@onready var panel: Panel = $Panel
-@onready var cost: Label = $Cost
-@onready var icon: TextureRect = $Icon
 @onready var card_state_machine: CardStateMachine = $CardStateMachine as CardStateMachine
 @onready var drop_point_detector: Area2D = $DropPointDetector
 @onready var targets: Array[Node] = []
 @onready var original_index := self.get_index()
 
-var parent: Control
 var tween: Tween
 var playable := true : set = _set_playable
 var disabled := false
 var selectable = false
 var preview_mode = false : set = _set_preview_mode
+
+func init(props):
+	super(props)
 
 func _ready() -> void:
 	#Connect signals from event bus
@@ -32,8 +27,11 @@ func _ready() -> void:
 	Events.card_drag_started.connect(_on_card_drag_or_aiming_started)
 	Events.card_aim_ended.connect(_on_card_drag_or_aiming_ended)
 	Events.card_drag_ended.connect(_on_card_drag_or_aiming_ended)
-	#Initiate the state machine
-	card_state_machine.init(self)
+	var props = {
+		state_machine = card_state_machine,
+		child = self
+	}
+	self.init(props)
 
 
 func animate_to_position(new_position: Vector2, duration: float) -> void:
@@ -48,27 +46,9 @@ func play() -> void:
 	card.play(targets, character_stats)
 	queue_free()
 
-func _input(event: InputEvent) -> void:
-	card_state_machine.on_input(event)
-
-func _on_gui_input(event: InputEvent) -> void:
-	card_state_machine.on_gui_input(event)
-
-func _on_mouse_entered() -> void:
-	card_state_machine.on_mouse_entered()
-
-func _on_mouse_exited() -> void:
-	card_state_machine.on_mouse_exited()
-
-
 func _set_card(value: Card) -> void:
-	if not is_node_ready():
-		await ready
-	
-	card = value
-	cost.text = str(card.cost)
-	icon.texture = card.icon
-
+	super._set_item(value)
+	card = item
 
 func _set_playable(value: bool) -> void:
 	playable = value
