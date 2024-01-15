@@ -42,7 +42,9 @@ func start_next_wave() -> void:
 	increment_wave_level()
 	scenario_handler.spawn_wave(battle_scenario, current_wave_level)
 	enemy_handler.reset_enemy_actions()
+	player_handler.shuffle_discard_into_deck()
 	player_handler.start_turn()
+	
 
 
 func increment_wave_level():

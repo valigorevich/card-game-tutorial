@@ -101,6 +101,7 @@ one_shot = true
 
 [node name="DeckInfoLayer" type="CanvasLayer" parent="."]
 layer = 2
+visible = false
 
 [node name="DeckInfoOpenButton" type="Button" parent="DeckInfoLayer"]
 offset_left = 28.0

@@ -21,6 +21,7 @@ func start_turn() -> void:
 	character.block = 0
 	character.reset_mana()
 	draw_cards(character.cards_per_turn)
+	
 
 
 func end_turn() -> void:
@@ -57,7 +58,10 @@ func reshuffle_deck_from_discard() -> void:
 	if not character.draw_pile.empty():
 		return
 
-	while not character.discard.empty():
-		character.draw_pile.add_card(character.discard.draw_card())
+	shuffle_discard_into_deck()
 
 	character.draw_pile.shuffle()
+
+func shuffle_discard_into_deck() -> void:
+	while not character.discard.empty():
+		character.draw_pile.add_card(character.discard.draw_card())
