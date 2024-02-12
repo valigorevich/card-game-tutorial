@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=4 format=3 uid="uid://btgawdx8mhf0p"]
+
+[ext_resource type="Script" path="res://custom_resources/character_stats.gd" id="1_6m04p"]
+[ext_resource type="Texture2D" uid="uid://dpfqok8tuy4r7" path="res://art/tile_0084.png" id="1_s271n"]
+[ext_resource type="Resource" uid="uid://sep51ukm7ioi" path="res://characters/warrior/warrior_starting_deck.tres" id="3_r16by"]
+
+[resource]
+script = ExtResource("1_6m04p")
+character_name = "Wizard"
+description = "Intellegent enough to not 
+get in dumb fights."
+portrait = ExtResource("1_s271n")
+starting_deck = ExtResource("3_r16by")
+cards_per_turn = 3
+max_mana = 4
+max_health = 27
+art = ExtResource("1_s271n")

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=4 format=3 uid="uid://dhdu8i0dbnhrw"]
+
+[ext_resource type="Script" path="res://custom_resources/character_stats.gd" id="1_nbpbm"]
+[ext_resource type="Texture2D" uid="uid://cwf6dyi56tgo" path="res://art/tile_0088.png" id="1_ssn2g"]
+[ext_resource type="Resource" uid="uid://sep51ukm7ioi" path="res://characters/warrior/warrior_starting_deck.tres" id="3_fve83"]
+
+[resource]
+script = ExtResource("1_nbpbm")
+character_name = "Assassin"
+description = "Solves issues in most 
+silent and deadly way.
+"
+portrait = ExtResource("1_ssn2g")
+starting_deck = ExtResource("3_fve83")
+cards_per_turn = 5
+max_mana = 3
+max_health = 24
+art = ExtResource("1_ssn2g")
