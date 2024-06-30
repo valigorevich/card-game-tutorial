@@ -11,9 +11,7 @@ const HOVER_STYLEBOX := preload("res://scenes/card_ui/card_hover_stylebox.tres")
 @export var card: Card : set = _set_card
 @export var character_stats: CharacterStats : set = _set_character_stats
 
-@onready var panel: Panel = $Panel
-@onready var cost: Label = $Cost
-@onready var icon: TextureRect = $Icon
+@onready var card_visuals: CardVisuals = $CardVisuals
 @onready var card_state_machine: CardStateMachine = $CardStateMachine as CardStateMachine
 @onready var drop_point_detector: Area2D = $DropPointDetector
 @onready var targets: Array[Node] = []
@@ -64,18 +62,17 @@ func _set_card(value: Card) -> void:
 		await ready
 	
 	card = value
-	cost.text = str(card.cost)
-	icon.texture = card.icon
+	card_visuals.card = card
 
 
 func _set_playable(value: bool) -> void:
 	playable = value
 	if not playable:
-		cost.add_theme_color_override("font_color", Color.RED)
-		icon.modulate = Color(1, 1, 1, 0.5)
+		card_visuals.cost.add_theme_color_override("font_color", Color.RED)
+		card_visuals.icon.modulate = Color(1, 1, 1, 0.5)
 	else:
-		cost.remove_theme_color_override("font_color")
-		icon.modulate = Color(1, 1, 1, 1)
+		card_visuals.cost.remove_theme_color_override("font_color")
+		card_visuals.icon.modulate = Color(1, 1, 1, 1)
 
 
 func _set_character_stats(value: CharacterStats) -> void:

@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="CharacterStats" load_steps=4 format=3 uid="uid://ds362jrpbjf4n"]
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=5 format=3 uid="uid://ds362jrpbjf4n"]
 
 [ext_resource type="Script" path="res://custom_resources/character_stats.gd" id="1_4rgkk"]
 [ext_resource type="Texture2D" uid="uid://cpydvk8mq66o5" path="res://art/tile_0087.png" id="1_bjjld"]
+[ext_resource type="Resource" uid="uid://dfvkwk3airut6" path="res://characters/warrior/warrior_draftable_cards.tres" id="2_5sf8h"]
 [ext_resource type="Resource" uid="uid://sep51ukm7ioi" path="res://characters/warrior/warrior_starting_deck.tres" id="3_qlfo2"]
 
 [resource]
@@ -10,6 +11,7 @@ character_name = "Warrior"
 description = "Dumb and hits hard"
 portrait = ExtResource("1_bjjld")
 starting_deck = ExtResource("3_qlfo2")
+draftable_cards = ExtResource("2_5sf8h")
 cards_per_turn = 4
 max_mana = 3
 max_health = 35

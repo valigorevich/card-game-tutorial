@@ -3,11 +3,19 @@ extends Resource
 
 #Define enum for types of cards and types os targets
 enum Type {ATTACK, SKILL, POWER}
+enum Rarity {COMMON, UNCOMMON, RARE}
 enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, EVERYONE}
+
+const RARITY_COLORS := {
+	Card.Rarity.COMMON: Color.GRAY,
+	Card.Rarity.UNCOMMON: Color.CORNFLOWER_BLUE,
+	Card.Rarity.RARE: Color.GOLD,
+}
 
 @export_group("Card Attributes")
 @export var id: String
 @export var type: Type
+@export var rarity: Rarity
 @export var target: Target
 @export var cost: int
 
@@ -33,7 +41,7 @@ func _get_targets(targets: Array[Node]) -> Array[Node]:
 			return tree.get_nodes_in_group("player")
 		Target.ALL_ENEMIES:
 			return tree.get_nodes_in_group("enemies")
-		Target.ALL_ENEMIES:
+		Target.EVERYONE:
 			return tree.get_nodes_in_group("player") + tree.get_nodes_in_group("enemies")
 		_:
 			return []
