@@ -9,7 +9,8 @@ enum Type {NOT_ASSIGNED, MONSTER, TREASURE, CAMPFIRE, SHOP, BOSS}
 @export var position: Vector2
 @export var next_rooms: Array[Room]
 @export var selected := false
-
+#This is only needed for the MONSTER and BOSS types
+@export var battle_stats: BattleStats
 
 func _to_string() -> String:
 	return "%s (%s)" % [column, Type.keys()[type][0]] #Show only first letter on type value

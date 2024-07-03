@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cj460u7wovon8"]
+[gd_scene load_steps=9 format=3 uid="uid://cj460u7wovon8"]
 
 [ext_resource type="Script" path="res://scenes/run/run.gd" id="1_h1jt0"]
 [ext_resource type="PackedScene" uid="uid://biihpf6hgcm3i" path="res://scenes/map/map.tscn" id="1_h8np2"]
 [ext_resource type="Resource" uid="uid://45f8qke6n8yx" path="res://scenes/run/run_startup.tres" id="2_l2tik"]
 [ext_resource type="PackedScene" uid="uid://dyd0ftr1jjwyg" path="res://scenes/ui/gold_ui.tscn" id="4_bo65a"]
+[ext_resource type="PackedScene" uid="uid://c25kw1ajrpmit" path="res://scenes/ui/health_ui.tscn" id="4_j0ixi"]
 [ext_resource type="PackedScene" uid="uid://by5vf5qvq2qby" path="res://scenes/ui/card_pile_opener.tscn" id="4_qcjjt"]
 [ext_resource type="Texture2D" uid="uid://clcvcrwye2h7a" path="res://art/deck.png" id="5_5ahbr"]
 [ext_resource type="PackedScene" uid="uid://bsjqddswrn2sr" path="res://scenes/ui/card_pile_view.tscn" id="6_071ar"]
@@ -17,6 +18,7 @@ run_startup = ExtResource("2_l2tik")
 [node name="CurrentView" type="Node" parent="."]
 
 [node name="DebugButtons" type="VBoxContainer" parent="."]
+visible = false
 anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
@@ -67,6 +69,11 @@ custom_minimum_size = Vector2(0, 18)
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
+
+[node name="HealthUI" parent="TopBar/BarItems" instance=ExtResource("4_j0ixi")]
+unique_name_in_owner = true
+layout_mode = 2
+show_max_hp = true
 
 [node name="GoldUI" parent="TopBar/BarItems" instance=ExtResource("4_bo65a")]
 unique_name_in_owner = true

@@ -24,7 +24,7 @@ func set_mana(value: int) -> void:
 	
 #Reset mana to its max value. Usualy called every turn
 func reset_mana() -> void:
-	self.mana = max_mana
+	mana = max_mana
 
 
 func take_damage(damage: int) -> void:

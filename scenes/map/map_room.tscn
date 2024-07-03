@@ -74,7 +74,7 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"_on_map_room_selected"
+"method": &"_on_map_animation_finished"
 }]
 }
 

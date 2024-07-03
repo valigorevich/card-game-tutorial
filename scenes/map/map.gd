@@ -22,6 +22,9 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if not visible:
+		return
+	
 	if event.is_action_pressed("scroll_up"):
 		camera_2d.position.y -= SCROLL_SPEED
 	elif event.is_action_pressed("scroll_down"):
@@ -76,6 +79,7 @@ func _spawn_room(room: Room) -> void:
 	rooms.add_child(new_map_room)
 	new_map_room.room = room
 	new_map_room.selected.connect(_on_map_room_selected)
+	new_map_room.animation_finished.connect(_on_map_room_animation_finished)
 	_connect_lines(room)
 	
 	if room.selected and room.row < floors_claimed:
@@ -100,4 +104,6 @@ func _on_map_room_selected(room: Room) -> void:
 	
 	last_room = room
 	floors_claimed += 1
+
+func _on_map_room_animation_finished(room: Room) -> void:
 	Events.map_exited.emit(room)

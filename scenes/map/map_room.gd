@@ -2,6 +2,7 @@ class_name MapRoom
 extends Area2D
 
 signal selected(room: Room)
+signal animation_finished(room: Room)
 
 const ICONS := {
 	#We use icon and scale
@@ -44,9 +45,10 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 		return
 	
 	room.selected = true
+	selected.emit(room)
 	animation_player.play("select")
 	
 #Called by animation player when the "select" animation finishes
 #Why? Because we want to play animation before transition to next room occurs
-func _on_map_room_selected() -> void:
-	selected.emit(room)
+func _on_map_animation_finished() -> void:
+	animation_finished.emit(room)

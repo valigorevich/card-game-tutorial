@@ -4,7 +4,25 @@ extends Node2D
 
 func _ready() -> void:
 	Events.enemy_action_completed.connect(_on_enemy_action_completed)
+
+#Get enemies from battle stats resource to put them in scene
+func setup_enemies(battle_stats: BattleStats) -> void:
+	if not battle_stats:
+		return
 	
+	for enemy: Enemy in get_children():
+		enemy.queue_free()
+	
+	#Get an instance of enemies setup
+	var all_new_enemies = battle_stats.enemies.instantiate()
+	
+	#Get Enemies from that scence, duplicate and place in battle
+	for new_enemy: Node2D in all_new_enemies.get_children():
+		var new_enemy_child := new_enemy.duplicate() as Enemy
+		add_child(new_enemy_child)
+	
+	#Delete instance of enemies group
+	all_new_enemies.queue_free()
 
 #Update enemy actions
 func reset_enemy_actions() -> void:

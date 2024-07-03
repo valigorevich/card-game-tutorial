@@ -21,6 +21,8 @@ const SHOP_ROOM_WEIGHT := 2.5
 const MIN_FLOOR_CAMPFIRE_APPEAR := 4
 
 
+@export var battle_stats_pool: BattleStatsPool
+
 #Variable to store accumulated roomtype weights to roll from
 var random_room_type_weights = {
 	Room.Type.MONSTER: 0.0,
@@ -43,6 +45,8 @@ func generate_map() -> Array[Array]:
 		var current_j := j
 		for i in FLOORS - 1:
 			current_j = _setup_connection(i, current_j)
+	
+	battle_stats_pool.setup()
 	
 	_setup_boss_room()
 	_setup_random_rooms_weights()
@@ -152,6 +156,7 @@ func _setup_boss_room() -> void:
 			current_room.next_rooms.append(boss_room)
 	
 	boss_room.type = Room.Type.BOSS
+	boss_room.battle_stats = battle_stats_pool.get_random_battle_for_tier(2)
 
 func _setup_random_rooms_weights() -> void:
 	random_room_type_weights[Room.Type.MONSTER] = MONSTER_ROOM_WEIGHT
@@ -165,6 +170,7 @@ func _setup_room_types() -> void:
 	for room: Room in map_data[0]:
 		if room.next_rooms:
 			room.type = Room.Type.MONSTER
+			room.battle_stats = battle_stats_pool.get_random_battle_for_tier(0)
 	
 	#9-th floor is always a treasure
 	for room: Room in map_data[8]: #should be referenced constant
@@ -210,6 +216,14 @@ func _set_room_randomly(room_to_set: Room) -> void:
 		consecutive_shops = is_shop and has_shop_parent
 	
 	room_to_set.type = type_candidate
+	
+	#Set battle stats for MONSTER rooms
+	if room_to_set.type == Room.Type.MONSTER:
+		var tier_for_monster_room := 0
+		if room_to_set.row > 2:
+			tier_for_monster_room = 1
+		
+		room_to_set.battle_stats = battle_stats_pool.get_random_battle_for_tier(tier_for_monster_room)
 
 func _room_has_next_room_of_type(room: Room, type: Room.Type) -> bool:
 	for next_room in room.next_rooms:
