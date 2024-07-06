@@ -34,8 +34,16 @@ func _on_card_ui_reparent_requested(child: CardUI) -> void:
 	move_child.call_deferred(child, child.original_index)
 
 func _on_card_played(card: Card) -> void:
-	character_stats.discard.add_card(card)
 	#Iterate through hand to get new indexes and save for reparent.
 	for child in get_children():
 		var hand_card_ui := child as CardUI
 		hand_card_ui.original_index = hand_card_ui.get_index()
+	
+	match card.play_folowup:
+		Card.PlayFolowup.DISCARD:
+			character_stats.discard.add_card(card)
+		Card.PlayFolowup.EXHAUST:
+			character_stats.exhaust.add_card(card)
+		Card.PlayFolowup.VANISH:
+			return
+	

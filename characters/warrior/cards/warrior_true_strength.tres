@@ -11,6 +11,7 @@ type = 2
 rarity = 2
 target = 0
 cost = 3
+play_folowup = 2
 icon = ExtResource("1_ob7k8")
 tooltip_text = "[center]At the start of your turn, gain 2 [color=\"ffdf00\"]Muscle[/color].[/center]"
 sound = ExtResource("3_fw7yt")

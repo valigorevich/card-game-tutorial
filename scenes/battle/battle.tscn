@@ -66,8 +66,9 @@ stats = ExtResource("4_iex3v")
 
 [node name="CardTargetSelector" parent="." instance=ExtResource("3_8fvkj")]
 
-[node name="PlayerHandler" type="Node" parent="." node_paths=PackedStringArray("hand")]
+[node name="PlayerHandler" type="Node" parent="." node_paths=PackedStringArray("player", "hand")]
 script = ExtResource("8_jpedf")
+player = NodePath("../Player")
 hand = NodePath("../BattleUI/Hand")
 
 [node name="RedFlash" type="CanvasLayer" parent="."]
@@ -176,6 +177,25 @@ offset_bottom = 18.0
 text = "99"
 horizontal_alignment = 1
 
+[node name="ExhaustPileButton" parent="BattleUI" node_paths=PackedStringArray("counter") instance=ExtResource("18_4002a")]
+unique_name_in_owner = true
+self_modulate = Color(0.27451, 0.466667, 0.509804, 0.839216)
+offset_left = 208.0
+offset_top = 123.0
+offset_right = 224.0
+offset_bottom = 139.0
+texture_normal = ExtResource("19_qk4ov")
+counter = NodePath("Counter")
+
+[node name="Counter" type="Label" parent="BattleUI/ExhaustPileButton"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 12.0
+offset_right = 9.0
+offset_bottom = 18.0
+text = "99"
+horizontal_alignment = 1
+
 [node name="BattleOverLayer" type="CanvasLayer" parent="."]
 layer = 2
 
@@ -190,5 +210,9 @@ unique_name_in_owner = true
 visible = false
 
 [node name="DiscardPileView" parent="CardPileViews" instance=ExtResource("21_2f5qd")]
+unique_name_in_owner = true
+visible = false
+
+[node name="ExhaustPileView" parent="CardPileViews" instance=ExtResource("21_2f5qd")]
 unique_name_in_owner = true
 visible = false

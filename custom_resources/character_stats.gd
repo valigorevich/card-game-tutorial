@@ -16,6 +16,7 @@ var mana: int : set = set_mana
 var deck: CardPile
 var discard: CardPile
 var draw_pile: CardPile
+var exhaust: CardPile
 
 
 func set_mana(value: int) -> void:
@@ -48,4 +49,5 @@ func create_instance() -> Resource:
 	instance.deck = instance.starting_deck.duplicate()
 	instance.discard = CardPile.new()
 	instance.draw_pile = CardPile.new()
+	instance.exhaust = CardPile.new()
 	return instance

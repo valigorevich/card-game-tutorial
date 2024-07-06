@@ -1,10 +1,11 @@
 class_name Card
 extends Resource
 
-#Define enum for types of cards and types os targets
+#Define enum for types of cards and types of targets
 enum Type {ATTACK, SKILL, POWER}
 enum Rarity {COMMON, UNCOMMON, RARE}
 enum Target {SELF, SINGLE_ENEMY, ALL_ENEMIES, EVERYONE}
+enum PlayFolowup {DISCARD, EXHAUST, VANISH}
 
 const RARITY_COLORS := {
 	Card.Rarity.COMMON: Color.GRAY,
@@ -18,6 +19,7 @@ const RARITY_COLORS := {
 @export var rarity: Rarity
 @export var target: Target
 @export var cost: int
+@export var play_folowup: PlayFolowup
 
 @export_group("Card Visuals")
 @export var icon: Texture

@@ -4,6 +4,7 @@ extends Node
 const HAND_DRAW_INTERVAL := 0.25
 const HAND_DISCARD_INTERVAL := 0.25
 
+@export var player: Player
 @export var hand: Hand
 
 var character: CharacterStats
@@ -14,24 +15,34 @@ func start_battle(character_stats: CharacterStats) -> void:
 	character.draw_pile = character.deck.duplicate(true)
 	character.draw_pile.shuffle()
 	character.discard = CardPile.new()
+	character.exhaust = CardPile.new()
+	player.status_handler.statuses_applied.connect(_on_statuses_applied)
 	start_turn()
 	
 
 func start_turn() -> void:
 	character.block = 0
 	character.reset_mana()
-	draw_cards(character.cards_per_turn)
+	
+	#Apply statuses before player turn starts
+	player.status_handler.apply_statuses_by_type(Status.Type.START_OF_TURN)
+	#When all statuses are applied, a statuses_applied signal is emited from statu_handler.
+	#So _on_status_applied is called.
 
 
 func end_turn() -> void:
 	hand.switch_hand_state()
-	discard_cards()
+	
+	#Apply statuses when player turn ends
+	player.status_handler.apply_statuses_by_type(Status.Type.END_OF_TURN)
+	#When all statuses are applied, a statuses_applied signal is emited from statu_handler.
+	#So _on_status_applied is called.
 
 
 func draw_card() -> void:
 	reshuffle_deck_from_discard()
 	hand.add_card(character.draw_pile.draw_card())
-	reshuffle_deck_from_discard()
+	#reshuffle_deck_from_discard()
 
 
 func draw_cards(amount: int) -> void:
@@ -69,3 +80,12 @@ func reshuffle_deck_from_discard() -> void:
 		character.draw_pile.add_card(character.discard.draw_card())
 	
 	character.draw_pile.shuffle()
+
+
+#Callback function that called when a signal emited that all statuses are applied.
+func _on_statuses_applied(type: Status.Type) -> void:
+	match type:
+		Status.Type.START_OF_TURN:
+			draw_cards(character.cards_per_turn)
+		Status.Type.END_OF_TURN:
+			discard_cards()

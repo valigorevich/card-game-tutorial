@@ -11,6 +11,7 @@ type = 0
 rarity = 0
 target = 2
 cost = 2
+play_folowup = 0
 icon = ExtResource("1_2eajq")
 tooltip_text = "[center]Deal [color=\"ff0000\"]4[/color] damage to all enemies.[/center]"
 sound = ExtResource("3_uelje")
