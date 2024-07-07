@@ -9,10 +9,11 @@ extends Node2D
 @onready var player_handler := $PlayerHandler as PlayerHandler
 @onready var enemy_handler := $EnemyHandler as EnemyHandler
 @onready var player := $Player as Player
+@onready var hand: Hand = %Hand
 
 
 func _ready() -> void:
-	
+	hand.player = player
 	enemy_handler.child_order_changed.connect(_on_enemies_child_order_changed)
 	Events.enemy_turn_ended.connect(_on_enemy_turn_ended)
 	

@@ -12,6 +12,7 @@ const WHITE_SPRITE_MATERIAL = preload("res://art/white_sprite_material.tres")
 @onready var stats_ui: = $StatsUI as StatsUI
 @onready var intent_ui: = $IntentUI as IntentUI
 @onready var status_handler: StatusHandler = $StatusHandler
+@onready var modifier_handler: ModifierHandler = $ModifierHandler
 
 var enemy_action_picker: EnemyActionPicker
 var current_action: EnemyAction : set = set_current_action
@@ -93,15 +94,18 @@ func update_stats() -> void:
 	stats_ui.update_stats(stats)
 
 
-func take_damage(damage: int) -> void:
+func take_damage(damage: int, modifier: Modifier.Type) -> void:
+	#We specify modifier to make different effect use different modifiers when we take damage. 
+	#So some of them deal damage with no modifiers even if enemy has one
 	if stats.health <= 0:
 		return
 	
 	sprite_2d.material = WHITE_SPRITE_MATERIAL
+	var modified_damage := modifier_handler.get_modified_value(damage, modifier)
 	
 	var tween := create_tween()
 	tween.tween_callback(Shaker.shake.bind(self, 16, 0.15))
-	tween.tween_callback(stats.take_damage.bind(damage))
+	tween.tween_callback(stats.take_damage.bind(modified_damage))
 	tween.tween_interval(0.17)
 	
 	tween.finished.connect(

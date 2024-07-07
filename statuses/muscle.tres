@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("2_ptvt8")
+status_id = "muscle"
 id = "muscle"
 type = 2
 stack_type = 1

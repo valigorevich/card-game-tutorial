@@ -10,6 +10,7 @@ const HOVER_STYLEBOX := preload("res://scenes/card_ui/card_hover_stylebox.tres")
 
 @export var card: Card : set = _set_card
 @export var character_stats: CharacterStats : set = _set_character_stats
+@export var player_modifiers: ModifierHandler
 
 @onready var card_visuals: CardVisuals = $CardVisuals
 @onready var card_state_machine: CardStateMachine = $CardStateMachine as CardStateMachine
@@ -41,7 +42,7 @@ func play() -> void:
 	if not card:
 		return
 
-	card.play(targets, character_stats)
+	card.play(targets, character_stats, player_modifiers)
 	queue_free()
 
 func _input(event: InputEvent) -> void:

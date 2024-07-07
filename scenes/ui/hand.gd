@@ -1,6 +1,7 @@
 class_name Hand
 extends HBoxContainer
 
+@export var player: Player
 @export var character_stats: CharacterStats
 
 @onready var card_ui = preload("res://scenes/card_ui/card_ui.tscn")
@@ -17,6 +18,7 @@ func add_card(card: Card) -> void:
 	new_card_ui.parent = self
 	new_card_ui.character_stats = character_stats
 	new_card_ui.disabled = true
+	new_card_ui.player_modifiers = player.modifier_handler
 
 
 func discard_card(card: CardUI) -> void:
