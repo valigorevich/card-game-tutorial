@@ -13,5 +13,5 @@ target = 1
 cost = 1
 play_folowup = 0
 icon = ExtResource("1_r6c4o")
-tooltip_text = "[center]Deal [color=\"ff0000\"]6[/color] damage.[/center]"
+tooltip_text = "[center]Deal [color=\"ff0000\"]%s[/color] damage.[/center]"
 sound = ExtResource("3_16wdn")

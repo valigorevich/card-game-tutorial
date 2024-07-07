@@ -6,6 +6,7 @@
 [node name="StatusUI" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 2
 script = ExtResource("1_nrb3f")
 
 [node name="Icon" type="TextureRect" parent="."]
@@ -17,6 +18,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Duration" type="Label" parent="."]
+layout_mode = 0
 offset_left = 6.0
 offset_top = 6.0
 offset_right = 16.0

@@ -45,6 +45,22 @@ func play() -> void:
 	card.play(targets, character_stats, player_modifiers)
 	queue_free()
 
+
+#Requesting tooltip with modifiers
+func request_tooltip() -> void:
+	var enemy_modifiers := _get_active_enemy_modifiers()
+	var update_tooltip := card.get_updated_tooltip(player_modifiers, enemy_modifiers)
+	Events.card_tooltip_requested.emit(card.icon, update_tooltip)
+
+# Utility function to get enemy modifiers handler to get its modifiers
+func _get_active_enemy_modifiers() -> ModifierHandler:
+	#If not targets, or many targets, or target is not an enemy - we pass
+	if targets.is_empty() or targets.size() > 1 or not targets[0] is Enemy:
+		return null
+	
+	return targets[0].modifier_handler
+
+
 func _input(event: InputEvent) -> void:
 	card_state_machine.on_input(event)
 

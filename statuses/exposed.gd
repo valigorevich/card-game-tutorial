@@ -31,3 +31,7 @@ func initialize_status(target: Node) -> void:
 func _on_status_changed(dmg_taken_modifier: Modifier) -> void:
 	if duration <= 0 and dmg_taken_modifier:
 		dmg_taken_modifier.remove_value(status_id)
+
+
+func get_tooltip() -> String:
+	return tooltip % duration

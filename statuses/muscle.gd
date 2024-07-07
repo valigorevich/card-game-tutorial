@@ -25,3 +25,7 @@ func _on_status_changed(target: Node) -> void:
 	#Set modifier stats according to muscle stacks
 	muscle_modifier_value.additive = stacks
 	dmg_dealt_modifier.add_new_value(muscle_modifier_value)
+
+
+func get_tooltip() -> String:
+	return tooltip % stacks

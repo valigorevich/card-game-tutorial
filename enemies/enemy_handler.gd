@@ -7,6 +7,10 @@ var acting_enemies: Array[Enemy] = [] #array for tracking all enemies each turn
 func _ready() -> void:
 	Events.enemy_died.connect(_on_enemy_died)
 	Events.enemy_action_completed.connect(_on_enemy_action_completed)
+	
+	#Temporary solution for updating intents on player turn start.
+	#Should be replaced in future with updating intents on status change
+	Events.player_hand_drawn.connect(_on_player_hand_drawn)
 
 #Get enemies from battle stats resource to put them in scene
 func setup_enemies(battle_stats: BattleStats) -> void:
@@ -90,3 +94,8 @@ func _on_enemy_action_completed(enemy: Enemy) -> void:
 	#when all actions of enemy are completed, we call end-of-turn statuses
 	enemy.status_handler.apply_statuses_by_type(Status.Type.END_OF_TURN)
 	#When all stuses have been applie, _on_enemy_statuses_applied will be called
+
+
+func _on_player_hand_drawn():
+	for enemy: Enemy in get_children():
+		enemy.update_intent()

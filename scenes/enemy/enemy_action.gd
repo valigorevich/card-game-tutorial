@@ -22,3 +22,10 @@ func is_performable() -> bool:
 #Virtual function for actual action stuff
 func perform_action() -> void:
 	pass
+
+
+#Virtual function to update intent text based on dynamic numbers
+func update_intent_text() -> void:
+	#for text with no modifiers
+	intent.current_text = intent.base_text
+	#Dynamic texts overrides in specific enemy actions. See enemy_action_template

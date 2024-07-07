@@ -12,4 +12,4 @@ can_expire = true
 duration = 1
 stacks = 0
 icon = ExtResource("1_q26mp")
-tooltip = "TODO"
+tooltip = "Exposed: takes 50%% more damage for %s turns"

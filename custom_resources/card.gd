@@ -62,3 +62,15 @@ func play(targets: Array[Node], character_stats: CharacterStats, modifiers: Modi
 #Virtual method for effects application based on a specific card
 func apply_effects(_targets: Array[Node], modifiers: ModifierHandler) -> void:
 	pass
+
+
+#This is used for default tooltips, like card tooltip in card_pive_view
+func get_default_tooltip() -> String:
+	return tooltip_text
+
+
+# Virual method for getting dynamic card tooltips based on modifiers.
+# Overrides in specific cards scripts
+# Used for tooltips when selected a card to play to take modifiers in considetation.
+func get_updated_tooltip(_player_modifiers: ModifierHandler, _enemy_modifiers: ModifierHandler) -> String:
+	return tooltip_text

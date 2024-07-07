@@ -24,8 +24,7 @@ func _ready() -> void:
 
 func set_current_action(value: EnemyAction) -> void:
 	current_action = value
-	if current_action:
-		intent_ui.update_intent(current_action.intent)
+	update_intent()
 
 
 #Set function for stats with connecting a signal and calling and enemy update
@@ -87,6 +86,14 @@ func do_turn() -> void:
 		return
 	
 	current_action.perform_action()
+
+
+# Update enemy intent UI. This is needed so we can update dynamic intent UI outside of enemy turn
+# e.g. During player's turn we loose (or recieve) DMG_TAKEN modifier, so enemy intents should be updated immidiately
+func update_intent() -> void:
+	if current_action:
+		current_action.update_intent_text()
+		intent_ui.update_intent(current_action.intent)
 
 
 #Update stats in UI

@@ -67,6 +67,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	
 	if not current_card.targets.has(area):
 		current_card.targets.append(area)
+		current_card.request_tooltip()
 
 
 func _on_area_2d_area_exited(area: Area2D) -> void:
@@ -74,3 +75,4 @@ func _on_area_2d_area_exited(area: Area2D) -> void:
 		return
 	
 	current_card.targets.erase(area)
+	current_card.request_tooltip()
