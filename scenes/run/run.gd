@@ -15,6 +15,9 @@ const TREASURE_SCENE := preload("res://scenes/treasure/treasure.tscn")
 @onready var health_ui: HealthUI = %HealthUI
 @onready var deck_button: CardPileOpener = %DeckButton
 @onready var deck_view: CardPileView = %DeckView
+@onready var relic_handler: RelicHandler = %RelicHandler
+@onready var relic_tooltip: RelicTooltip = %RelicTooltip
+
 
 @onready var map_button: Button = %MapButton
 @onready var battle_button: Button = %BattleButton
@@ -84,6 +87,10 @@ func _setup_top_bar() -> void:
 	character.stats_changed.connect(health_ui.update_stats.bind(character))
 	health_ui.update_stats(character)
 	gold_ui.run_stats = stats
+	
+	relic_handler.add_relic(character.starting_relic)
+	Events.relic_tooltip_requested.connect(relic_tooltip.show_tooltip)
+	
 	deck_button.card_pile = character.deck
 	deck_view.card_pile = character.deck
 	deck_button.pressed.connect(deck_view.show_current_view.bind("Deck"))
@@ -102,6 +109,8 @@ func _on_battle_room_entered(room: Room) -> void:
 	var battle_scene: = _change_view(BATTLE_SCENE) as Battle
 	battle_scene.character_stats = character
 	battle_scene.battle_stats = room.battle_stats
+	battle_scene.relics = relic_handler
+	
 	battle_scene.start_battle()
 
 

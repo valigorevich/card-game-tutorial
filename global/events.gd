@@ -9,6 +9,9 @@ signal card_played(card: Card)
 signal card_tooltip_requested(card: Card)
 signal tooltip_hide_requested
 
+#Relic-related events
+signal relic_tooltip_requested(relic: Relic)
+
 #Player-related events
 signal player_hand_drawn
 signal player_hand_discarded

@@ -1,9 +1,21 @@
+# Responsible for player turn order.
+# Turn order:
+# 1. START_OF_TURN_RELICS
+# 2. Player block and health resets at the start of turn
+# 3. START_OF TURN_STATUSES
+# 4. Draw hand
+# 5. End turn
+# 6. END_OF_TURN relics
+# 7. END_OF_TURN_STATUSES
+# 8. Discard hand 
+
 class_name PlayerHandler
 extends Node
 
 const HAND_DRAW_INTERVAL := 0.25
 const HAND_DISCARD_INTERVAL := 0.25
 
+@export var relics: RelicHandler
 @export var player: Player
 @export var hand: Hand
 
@@ -16,7 +28,10 @@ func start_battle(character_stats: CharacterStats) -> void:
 	character.draw_pile.shuffle()
 	character.discard = CardPile.new()
 	character.exhaust = CardPile.new()
+	
+	relics.relics_activated.connect(_on_relics_activated)
 	player.status_handler.statuses_applied.connect(_on_statuses_applied)
+	
 	start_turn()
 	
 
@@ -24,19 +39,15 @@ func start_turn() -> void:
 	character.block = 0
 	character.reset_mana()
 	
-	#Apply statuses before player turn starts
-	player.status_handler.apply_statuses_by_type(Status.Type.START_OF_TURN)
-	#When all statuses are applied, a statuses_applied signal is emited from statu_handler.
-	#So _on_status_applied is called.
+	#Activate START_OF_TURN relics
+	relics.activate_relics_by_type(Relic.Type.START_OF_TURN)
 
 
 func end_turn() -> void:
 	hand.switch_hand_state()
 	
-	#Apply statuses when player turn ends
-	player.status_handler.apply_statuses_by_type(Status.Type.END_OF_TURN)
-	#When all statuses are applied, a statuses_applied signal is emited from statu_handler.
-	#So _on_status_applied is called.
+	#Activate START_OF_TURN relics
+	relics.activate_relics_by_type(Relic.Type.END_OF_TURN)
 
 
 func draw_card() -> void:
@@ -80,6 +91,21 @@ func reshuffle_deck_from_discard() -> void:
 		character.draw_pile.add_card(character.discard.draw_card())
 	
 	character.draw_pile.shuffle()
+
+
+func _on_relics_activated(type: Relic.Type) -> void:
+	match type:
+		Relic.Type.START_OF_TURN:	
+			#Apply statuses before player turn starts
+			player.status_handler.apply_statuses_by_type(Status.Type.START_OF_TURN)
+			#When all statuses are applied, a statuses_applied signal is emited from statu_handler.
+			#So _on_status_applied is called.
+
+		Relic.Type.END_OF_TURN:
+			#Apply statuses when player turn ends
+			player.status_handler.apply_statuses_by_type(Status.Type.END_OF_TURN)
+			#When all statuses are applied, a statuses_applied signal is emited from statu_handler.
+			#So _on_status_applied is called.
 
 
 #Callback function that called when a signal emited that all statuses are applied.
