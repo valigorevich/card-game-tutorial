@@ -18,7 +18,7 @@ func get_modifier(type: Modifier.Type) -> Modifier:
 	return null
 
 
-#Main method to get needed modofied value of a certain type
+#Main method to get needed modified value of a certain type
 func get_modified_value(base: int, type: Modifier.Type) -> int:
 	var modifier := get_modifier(type)
 	

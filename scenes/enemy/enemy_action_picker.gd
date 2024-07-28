@@ -1,4 +1,4 @@
-#The brain of enemy. Basicaly initiates enemy actions and choos what to play
+#The brain of enemy. Basicaly initiates enemy actions and choose what to play
 class_name EnemyActionPicker
 extends Node
 
