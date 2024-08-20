@@ -39,6 +39,18 @@ func generate_new_map() -> void:
 	create_map()
 
 
+func load_map(map: Array[Array], floors_completed: int, last_room_climbed: Room) -> void:
+	floors_claimed = floors_completed
+	map_data = map
+	last_room = last_room_climbed
+	create_map()
+	
+	if floors_claimed > 0:
+		unlock_next_rooms()
+	else:
+		unlock_floor()
+
+
 func create_map() -> void:
 	#Iterate through all rooms
 	for current_floor: Array in map_data:
@@ -104,6 +116,7 @@ func _on_map_room_selected(room: Room) -> void:
 	
 	last_room = room
 	floors_claimed += 1
+
 
 func _on_map_room_animation_finished(room: Room) -> void:
 	Events.map_exited.emit(room)

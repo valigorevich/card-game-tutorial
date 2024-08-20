@@ -49,6 +49,7 @@ func _on_enemies_child_order_changed() -> void:
 
 func _on_player_died() -> void:
 	Events.battle_over_screen_requested.emit("Game Over!", BattleOverPanel.Type.LOOSE)
+	SaveGame.delete_data()
 
 
 func _on_relics_activated(type: Relic.Type) -> void:

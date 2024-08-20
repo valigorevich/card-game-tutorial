@@ -10,5 +10,3 @@ func apply_effects(targets: Array[Node], _modifiers: ModifierHandler) -> void:
 	var true_strength := TRUE_STRENGTH_FORM_STATUS.duplicate()
 	status_effect.status = true_strength
 	status_effect.execute(targets)
-
-

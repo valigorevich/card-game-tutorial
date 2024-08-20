@@ -23,7 +23,7 @@ func add_card(card: Card) -> void:
 	
 #Shuffle card pile
 func shuffle() -> void:
-	cards.shuffle()
+	Rng.array_shuffle(cards)
 	
 #Clear card pile
 func clear() -> void:

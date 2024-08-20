@@ -11,7 +11,7 @@ const CARD_MENU_UI = preload("res://scenes/ui/card_menu_ui.tscn")
 @onready var buy_button: Button = %BuyButton
 
 #For simplicity. Probably shoul be a separate resource with shop_prices per card
-@onready var gold_cost := randi_range(100, 300)
+@onready var gold_cost := Rng.instance.randi_range(100, 300)
 
 #A solution for tracking instantiated card_menu_ui to call its show_tooltip in a shop
 var current_card_ui: CardMenuUI

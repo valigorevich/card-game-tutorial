@@ -19,7 +19,7 @@ func generate_relic() -> void:
 			return can_appear and not already_had_it
 	)
 	
-	found_relic = available_relics.pick_random()
+	found_relic = Rng.array_pick_random(available_relics)
 
 
 #Called from AnimationPlayer at the end of th 'open' animation

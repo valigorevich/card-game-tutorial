@@ -11,7 +11,7 @@ const RELIC_UI = preload("res://scenes/relic_handler/relic_ui.tscn")
 @onready var buy_button: Button = %BuyButton
 
 #For simplicity. Probably shoul be a separate resource with shop_prices per card
-@onready var gold_cost := randi_range(100, 300)
+@onready var gold_cost := Rng.instance.randi_range(100, 300)
 
 
 func update(run_stats: RunStats) -> void:

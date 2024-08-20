@@ -11,4 +11,3 @@ func activate_relic(owner: RelicUI) -> void:
 		owner.flash()
 
 	
-

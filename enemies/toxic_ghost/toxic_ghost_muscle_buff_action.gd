@@ -36,4 +36,3 @@ func perform_action() -> void:
 	
 	#Signal when action finished
 	Events.enemy_action_completed.emit(enemy)
-

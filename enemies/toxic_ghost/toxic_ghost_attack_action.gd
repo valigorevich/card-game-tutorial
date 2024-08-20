@@ -44,4 +44,3 @@ func update_intent_text() -> void:
 	var modified_damage := player.modifier_handler.get_modified_value(damage, Modifier.Type.DMG_TAKEN)
 	var final_damage := enemy.modifier_handler.get_modified_value(modified_damage, Modifier.Type.DMG_DEALT)
 	intent.current_text = intent.base_text % final_damage
-

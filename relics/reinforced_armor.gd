@@ -10,5 +10,3 @@ func activate_relic(owner: RelicUI) -> void:
 	var block_effect := BlockEffect.new()
 	block_effect.amount = block
 	block_effect.execute(player)
-
-
