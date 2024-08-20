@@ -47,7 +47,7 @@ func _blink_timer_setup() -> void:
 
 func _generate_shop_cards() -> void:
 	var shop_card_array: Array[Card] = []
-	var available_cards := character_stats.draftable_cards.cards.duplicate(true)
+	var available_cards := character_stats.draftable_cards.duplicate_cards()
 	Rng.array_shuffle(available_cards)
 	shop_card_array = available_cards.slice(0, 3) #Take first 3 cards as shop_cards
 	

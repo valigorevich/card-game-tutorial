@@ -24,7 +24,7 @@ var character: CharacterStats
 
 func start_battle(character_stats: CharacterStats) -> void:
 	character = character_stats
-	character.draw_pile = character.deck.duplicate(true)
+	character.draw_pile = character.deck.custom_duplicate()
 	character.draw_pile.shuffle()
 	character.discard = CardPile.new()
 	character.exhaust = CardPile.new()

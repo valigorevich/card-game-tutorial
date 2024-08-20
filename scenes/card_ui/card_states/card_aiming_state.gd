@@ -23,6 +23,7 @@ func on_input(event: InputEvent) -> void:
 	
 	#return to the base state if we moved below threshold or canceled
 	if (mouse_motion and mouse_at_bottom) or event.is_action_pressed("right_mouse"):
+		card_ui.targets.clear()
 		transition_requested.emit(self, CardState.State.BASE)
 	#or transite to released state
 	elif event.is_action_released("left_mouse") or event.is_action_pressed("left_mouse"):

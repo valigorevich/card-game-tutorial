@@ -17,6 +17,12 @@ var card_ui: CardUI
 func enter() -> void:
 	pass
 
+
+#To execute code right after we entered a new state
+func post_enter() -> void:
+	pass
+
+
 #Function for exiting the state. Will be redefined inside states
 func exit() -> void:
 	pass

@@ -19,4 +19,8 @@ func shake(thing: Node2D, strength: float, duration := 0.2) -> void:
 		#Ease out shake strength 25% each step
 		strength *= 0.75
 	
-	tween.finished.connect(func(): thing.position = orig_pos)
+	tween.finished.connect(
+		func(): 
+			if thing:
+				thing.position = orig_pos
+			)
